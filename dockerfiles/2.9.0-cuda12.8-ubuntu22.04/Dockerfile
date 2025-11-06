@@ -1,4 +1,4 @@
-FROM nvidia/cuda:12.8.0-base-ubuntu22.04
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
 # Remove any third-party apt sources to avoid issues with expiring keys.
 RUN rm -f /etc/apt/sources.list.d/*.list
@@ -29,7 +29,7 @@ RUN mkdir $HOME/.cache $HOME/.config \
  && chmod -R 777 $HOME
 
 # Download and install Micromamba.
-RUN curl -sL https://micro.mamba.pm/api/micromamba/linux-64/2.3.3 \
+RUN curl -sL https://micro.mamba.pm/api/micromamba/linux-64/1.1.0 \
   | sudo tar -xvj -C /usr/local bin/micromamba
 ENV MAMBA_EXE=/usr/local/bin/micromamba \
     MAMBA_ROOT_PREFIX=/home/user/micromamba \
@@ -43,6 +43,8 @@ RUN micromamba create -qy -n base -f /app/conda-linux-64.lock \
  && micromamba shell init --shell=bash --prefix="$MAMBA_ROOT_PREFIX" \
  && micromamba clean -qya
 
+# Fix for https://github.com/pytorch/pytorch/issues/97041
+RUN ln -s "$CONDA_PREFIX/lib/libnvrtc.so.11.8.89" "$CONDA_PREFIX/lib/libnvrtc.so"
 
 # Set the default command to python3.
 CMD ["python3"]

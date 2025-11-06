@@ -1,0 +1,14 @@
+name: base
+channels:
+- conda-forge
+- nvidia
+- defaults
+dependencies:
+- mamba=2.3.3
+- pip=25.3
+- python=3.14
+- scipy=1.16.3
+- tqdm=4.67.1
+- pip:
+  - torch==2.9.0
+  - torchvision==0.24.0
