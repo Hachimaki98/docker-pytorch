@@ -37,11 +37,10 @@ ENV MAMBA_EXE=/usr/local/bin/micromamba \
     PATH=/home/user/micromamba/bin:$PATH
 
 # Set up the base Conda environment by installing PyTorch and friends.
-COPY conda-linux-64.lock /app/conda-linux-64.lock
-RUN micromamba create -qy -n base -f /app/conda-linux-64.lock \
- && rm /app/conda-linux-64.lock \
- && micromamba shell init --shell=bash --prefix="$MAMBA_ROOT_PREFIX" \
- && micromamba clean -qya
+COPY environment.yml /app/environment.yml
+RUN micromamba create -n base -f /app/environment.yml \
+ && rm /app/environment.yml \
+ && micromamba shell init --shell=bash
 
 
 # Set the default command to python3.

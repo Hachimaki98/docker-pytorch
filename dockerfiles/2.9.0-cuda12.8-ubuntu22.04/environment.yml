@@ -1,0 +1,18 @@
+name: base
+channels:
+- conda-forge
+- nvidia
+- defaults
+dependencies:
+- mamba=2.3.3
+- pip=25.2
+- python=3.14
+- scipy=1.16.3
+- tqdm=4.67.1
+- pip:
+  - torch @ https://download.pytorch.org/whl/cu128/torch-2.9.0%2bcu128-cp314-cp314-manylinux_2_28_x86_64.whl
+  - nvidia-cublas-cu12 @ https://files.pythonhosted.org/packages/dc/61/e24b560ab2e2eaeb3c839129175fb330dfcfc29e5203196e5541a4c44682/nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl
+  - nvidia-cudnn-cu12 @ https://files.pythonhosted.org/packages/ba/51/e123d997aa098c61d029f76663dedbfb9bc8dcf8c60cbd6adbe42f76d049/nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl
+  - nvidia-curand-cu12 @ https://files.pythonhosted.org/packages/fb/aa/6584b56dc84ebe9cf93226a5cde4d99080c8e90ab40f0c27bda7a0f29aa1/nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl
+  - nvidia-cusolver-cu12 @ https://files.pythonhosted.org/packages/85/48/9a13d2975803e8cf2777d5ed57b87a0b6ca2cc795f9a4f59796a910bfb80/nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl
+  - torchvision==0.24.0
